@@ -1,0 +1,95 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+header {
+	padding: 20px;
+	margin: 15px;
+	background-color: #f3e5ab;
+	border-radius: 6px;
+}
+
+body {
+	padding: 20px;
+	line-height: 1.5;
+}
+
+header > h1 {
+	font-family: sans-serif;
+	color: black;
+	font-size: 22px;
+	text-align: center;
+}
+
+div > p {
+	font-family: sans-serif;
+	color: black;
+	font-size: 15px;
+}
+
+[type='text'] {
+	box-shadow: 1px 1px 1px 1px black;
+}
+
+#forms {
+	width: 550px;
+	padding: 15px;
+}
+
+#forms form {
+	font-size: 18px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+fieldset {
+	padding: 10px;
+	margin: 10px;
+	border: 2px dashed;
+}
+
+.buttons {
+	display: grid;
+	gap: 5px;
+}
+
+input[type='button'],
+input[type='submit'] {
+	padding: 10px;
+	border: 2px solid;
+	border-radius: 6px;
+	background-color: #fdf6c7;
+}
+
+input[type='button']:hover,
+input[type='submit']:hover {
+	box-shadow: 1px 1px 2px 1px black;
+}
+
+#group_num::after {
+	content: '🐥';
+}
+
+#resultTable {
+	width: 80%;
+	margin: 10px;
+	border-collapse: collapse;
+}
+
+#resultTable th,
+#resultTable td {
+	text-align: center;
+	padding: 8px;
+	border: 2px solid;
+}
+
+#resultTable th {
+	background-color: #f3e5ab;
+}
+
+#resultTable td {
+	background-color: #fdf6c7;
+}

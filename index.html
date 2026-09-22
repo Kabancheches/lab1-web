@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Лабораторная работа 1</title>
+		<link
+			rel="stylesheet"
+			href="styles.css"
+		/>
+	</head>
+	<body>
+		<header>
+			<h1>Лабораторная работа №1</h1>
+			<div>
+				<p>ФИО: Жумагазиев Максим Маратович</p>
+				<p id="group_num">Номер группы: P3214</p>
+				<p>Номер варианта: 504525</p>
+			</div>
+		</header>
+		<main>
+			<h2>Координатная плоскость:</h2>
+			<canvas
+				id="canvas_XYR"
+				width="500"
+				height="500"
+				aria-label="Координатная плоскость с голубой заданной областью."
+			></canvas>
+			<section id="forms">
+				<h2>Введите числа:</h2>
+				<form
+					action=""
+					method="post"
+				>
+					<fieldset>
+						<legend>Изменение X</legend>
+						<label for="selectX">Выберите число X:</label>
+						<select
+							id="selectX"
+							name="coord-x"
+							required
+						>
+							<option
+								disabled
+								value=""
+								selected
+							>
+								Не выбрано
+							</option>
+							<option value="-3">-3</option>
+							<option value="-2">-2</option>
+							<option value="-1">-1</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<legend>Изменение Y</legend>
+						<label for="textY">Введите число Y:</label>
+						<input
+							id="textY"
+							name="coord-Y"
+							type="text"
+							required
+							placeholder="Впишите число"
+							pattern="-?\d+(\.\d+)?"
+						/>
+					</fieldset>
+					<fieldset>
+						<legend>Изменение R</legend>
+						<label for="textR">Введите число R:</label>
+						<input
+							id="textR"
+							name="coord-R"
+							type="text"
+							required
+							placeholder="Впишите число"
+							pattern="-?\d+(\.\d+)?"
+						/>
+					</fieldset>
+					<fieldset class="buttons">
+						<legend>Кнопочки</legend>
+						<input
+							id="submitButton"
+							type="submit"
+							value="Рассчитать"
+						/>
+						<input
+							id="clearButton"
+							type="button"
+							value="Очистить таблицу"
+						/>
+					</fieldset>
+				</form>
+			</section>
+
+			<section class="result">
+				<h2>Результаты попаданий:</h2>
+				<table id="resultTable">
+					<thead>
+						<tr>
+							<th>№</th>
+							<th>X</th>
+							<th>Y</th>
+							<th>R</th>
+							<th>Попал?</th>
+							<th>Время попадания</th>
+						</tr>
+					</thead>
+					<tbody id="resultTableBody"></tbody>
+				</table>
+			</section>
+		</main>
+		<script src="script.js"></script>
+	</body>
+</html>

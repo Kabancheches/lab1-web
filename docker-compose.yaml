@@ -1,0 +1,6 @@
+services:
+  lab1-web:
+    build: .
+    container_name: lab-web1
+    ports:
+      - '8080:80'
