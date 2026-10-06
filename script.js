@@ -1,3 +1,4 @@
+'use strict'
 const canvas = document.getElementById('canvas_XYR')
 const ctx = canvas.getContext('2d')
 const forms = document.getElementById('forms')
@@ -16,10 +17,6 @@ function pxPerWidthR(r) {
 	return canvas.width / (2 * r + 10)
 }
 
-function pxPerHeightR(r) {
-	return canvas.height / (2 * r + 10)
-}
-
 function getCorrectR() {
 	const r = parseFloat(coord_R.value)
 	if (isNaN(r) || r < 2 || r > 5) {
@@ -33,7 +30,7 @@ function XtoCanvas(x, R) {
 }
 
 function YtoCanvas(y, R) {
-	return centerY - y * pxPerHeightR(R)
+	return centerY - y * pxPerWidthR(R)
 }
 
 function drawCoordinate() {
@@ -177,8 +174,14 @@ function showResults() {
 	}
 	resultTableBody.innerHTML = objectsHtml
 }
+function loadScript(src, callback) {
+	let script = document.createElement('script')
+	script.src = src
+	script.onload = () => callback(script)
+	document.head.append(script)
+}
 
-document.querySelector('form').addEventListener('submit', async function (event) {
+forms.addEventListener('submit', async function (event) {
 	event.preventDefault()
 	if (!(await validateForms())) return
 

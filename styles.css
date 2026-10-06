@@ -93,3 +93,11 @@ input[type='submit']:hover {
 #resultTable td {
 	background-color: #fdf6c7;
 }
+
+input[type='text']:invalid {
+	color: rgb(255, 0, 0);
+}
+
+input[type='text']:valid {
+	color: rgb(8, 250, 0);
+}
