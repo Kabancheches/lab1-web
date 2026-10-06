@@ -1,5 +1,6 @@
 'use strict'
 const canvas = document.getElementById('canvas_XYR')
+const correctX = [-3, -2, -1, 0, 1, 2, 3, 4, 5]
 const ctx = canvas.getContext('2d')
 const forms = document.getElementById('forms')
 const coord_X = document.getElementById('selectX')
@@ -36,6 +37,8 @@ function YtoCanvas(y, R) {
 function drawCoordinate() {
 	try {
 		const r = getCorrectR()
+		let R = r == 5 ? 'R' : r
+		let halfR = r == 5 ? 'R/2' : r / 2
 		const scale = pxPerWidthR(r)
 		ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -73,17 +76,59 @@ function drawCoordinate() {
 		ctx.fillText('y', centerX + 4, 10)
 		ctx.fillText('x', canvas.width - 10, centerY - 10)
 
-		ctx.fillText('R', centerX + 4, centerY - Math.abs(r) * scale)
-		ctx.fillText('R/2', centerX + 4, centerY - Math.abs(r) * scale * 0.5)
+		ctx.fillText(`${R}`, centerX + 4, centerY - Math.abs(r) * scale)
+		ctx.fillText(`${halfR}`, centerX + 4, centerY - Math.abs(r) * scale * 0.5)
 
-		ctx.fillText('-R', centerX + 4, centerY + Math.abs(r) * scale)
-		ctx.fillText('-R/2', centerX + 4, centerY + Math.abs(r) * scale * 0.5)
+		ctx.fillText(`-${R}`, centerX + 4, centerY + Math.abs(r) * scale)
+		ctx.fillText(`-${halfR}`, centerX + 4, centerY + Math.abs(r) * scale * 0.5)
 
-		ctx.fillText('R', centerX + Math.abs(r) * scale, centerY - 10)
-		ctx.fillText('R/2', centerX + Math.abs(r) * scale * 0.5, centerY - 10)
+		ctx.fillText(`${R}`, centerX + Math.abs(r) * scale, centerY - 10)
+		ctx.fillText(`${halfR}`, centerX + Math.abs(r) * scale * 0.5, centerY - 10)
 
-		ctx.fillText('-R', centerX - Math.abs(r) * scale, centerY - 10)
-		ctx.fillText('-R/2', centerX - Math.abs(r) * scale * 0.5, centerY - 10)
+		ctx.fillText(`-${R}`, centerX - Math.abs(r) * scale, centerY - 10)
+		ctx.fillText(`-${halfR}`, centerX - Math.abs(r) * scale * 0.5, centerY - 10)
+
+		const lineSize = 5
+		ctx.beginPath
+		ctx.moveTo(centerX - lineSize, centerY - Math.abs(r) * scale)
+		ctx.lineTo(centerX + lineSize, centerY - Math.abs(r) * scale)
+
+		ctx.moveTo(centerX - lineSize, centerY - Math.abs(r) * scale * 0.5)
+		ctx.lineTo(centerX + lineSize, centerY - Math.abs(r) * scale * 0.5)
+
+		ctx.moveTo(centerX - lineSize, centerY + Math.abs(r) * scale)
+		ctx.lineTo(centerX + lineSize, centerY + Math.abs(r) * scale)
+
+		ctx.moveTo(centerX - lineSize, centerY + Math.abs(r) * scale * 0.5)
+		ctx.lineTo(centerX + lineSize, centerY + Math.abs(r) * scale * 0.5)
+
+		ctx.moveTo(centerX + Math.abs(r) * scale, centerY - lineSize)
+		ctx.lineTo(centerX + Math.abs(r) * scale, centerY + lineSize)
+
+		ctx.moveTo(centerX + Math.abs(r) * scale * 0.5, centerY - lineSize)
+		ctx.lineTo(centerX + Math.abs(r) * scale * 0.5, centerY + lineSize)
+
+		ctx.moveTo(centerX - Math.abs(r) * scale, centerY - lineSize)
+		ctx.lineTo(centerX - Math.abs(r) * scale, centerY + lineSize)
+
+		ctx.moveTo(centerX - Math.abs(r) * scale * 0.5, centerY - lineSize)
+		ctx.lineTo(centerX - Math.abs(r) * scale * 0.5, centerY + lineSize)
+		ctx.stroke()
+
+		const arrowSize = 5
+		ctx.beginPath
+		ctx.moveTo(canvas.width, centerY)
+		ctx.lineTo(canvas.width - arrowSize, centerY - arrowSize)
+		ctx.lineTo(canvas.width - arrowSize, centerY + arrowSize)
+		ctx.closePath()
+		ctx.fill()
+
+		ctx.beginPath()
+		ctx.moveTo(centerX, 0)
+		ctx.lineTo(centerX - arrowSize, arrowSize)
+		ctx.lineTo(centerX + arrowSize, arrowSize)
+		ctx.closePath()
+		ctx.fill()
 	} catch (err) {
 		console.err('Ошибка:', err)
 	}
@@ -107,7 +152,7 @@ function checkHit(x, y, r) {
 }
 
 async function validateForms() {
-	if (coord_X.value == '') {
+	if (coord_X.value == '' || !correctX.includes(coord_X.value)) {
 		alert('Переменная X не выбрана.')
 		return false
 	}
