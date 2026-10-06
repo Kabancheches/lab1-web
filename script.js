@@ -73,18 +73,17 @@ function drawCoordinate() {
 		ctx.fillText('y', centerX + 4, 10)
 		ctx.fillText('x', canvas.width - 10, centerY - 10)
 
-		ctx.fillText('R', centerX + 4, Math.abs(r) * scale)
-		ctx.fillText('R/2', centerX + 4, Math.abs(r) * scale * 1.5)
+		ctx.fillText('R', centerX + 4, centerY - Math.abs(r) * scale)
+		ctx.fillText('R/2', centerX + 4, centerY - Math.abs(r) * scale * 0.5)
 
-		ctx.fillText('-R', Math.abs(r) * scale, centerY - 10)
-		ctx.fillText('-R/2', Math.abs(r) * scale * 1.5, centerY - 10)
+		ctx.fillText('-R', centerX + 4, centerY + Math.abs(r) * scale)
+		ctx.fillText('-R/2', centerX + 4, centerY + Math.abs(r) * scale * 0.5)
 
 		ctx.fillText('R', centerX + Math.abs(r) * scale, centerY - 10)
 		ctx.fillText('R/2', centerX + Math.abs(r) * scale * 0.5, centerY - 10)
 
-		ctx.fillText('-R/2', centerX + 4, centerY + Math.abs(r) * scale * 0.5)
-
-		ctx.fillText('-R', centerX + 4, centerY + Math.abs(r) * scale)
+		ctx.fillText('-R', centerX - Math.abs(r) * scale, centerY - 10)
+		ctx.fillText('-R/2', centerX - Math.abs(r) * scale * 0.5, centerY - 10)
 	} catch (err) {
 		console.err('Ошибка:', err)
 	}
@@ -188,7 +187,7 @@ forms.addEventListener('submit', async function (event) {
 	const currentTime = new Date().toISOString()
 
 	const newCheckObject = new checkedObject(resultsCheckedObjects.length + 1, x, y, r, isHit, currentTime)
-	resultsCheckedObjects.push(newCheckObject)
+	resultsCheckedObjects.unshift(newCheckObject)
 	saveResultsLocalSt()
 	showResults()
 	drawPoint(x, y, r, isHit)
