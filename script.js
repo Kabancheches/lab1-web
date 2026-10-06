@@ -174,12 +174,6 @@ function showResults() {
 	}
 	resultTableBody.innerHTML = objectsHtml
 }
-function loadScript(src, callback) {
-	let script = document.createElement('script')
-	script.src = src
-	script.onload = () => callback(script)
-	document.head.append(script)
-}
 
 forms.addEventListener('submit', async function (event) {
 	event.preventDefault()

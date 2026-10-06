@@ -29,32 +29,6 @@
 				height="500"
 				aria-label="Координатная плоскость с голубой заданной областью."
 			></canvas>
-
-			<input
-				id="submitButton"
-				type="submit"
-				value="Рассчитать"
-			/>
-			<button id="elem">Нажми меня</button>
-
-			<script>
-				class Menu {
-					handleEvent(event) {
-						switch (event.type) {
-							case 'mousedown':
-								elem.innerHTML = 'Нажата кнопка мыши'
-								break
-							case 'mouseup':
-								elem.innerHTML += '...и отжата.'
-								break
-						}
-					}
-				}
-
-				let menu = new Menu()
-				elem.addEventListener('mousedown', menu)
-				elem.addEventListener('mouseup', menu)
-			</script>
 			<section id="forms">
 				<h2>Введите числа:</h2>
 				<form
